@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="preload" href="./img/password-background.jpg" as="image">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teresa & Darin Are Getting Married! 🎉</title>
@@ -29,6 +30,14 @@
             background: linear-gradient(135deg, #FFF5F5 0%, #F0F9FF 50%, #FDF4FF 100%);
             min-height: 100vh;
             overflow-x: hidden;
+        }
+
+        body {
+            visibility: hidden;
+        }
+
+        body.loaded {
+            visibility: visible;
         }
 
         .floating-shapes {
@@ -487,7 +496,7 @@
 
         .password-dialog {
             background: white;
-            padding:1rem;
+            padding: 1rem;
             border-radius: 30px;
             border: 4px solid #333;
             box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.2);
@@ -719,6 +728,13 @@
     </footer>
 
     <script>
+
+        // Don't show the page until background image is loaded
+        const img = new Image();
+        img.onload = () => document.body.classList.add('loaded');
+        img.src = './img/password-background.jpg';
+
+
         // Password protection
         const SECRET_PASSWORD = 'nihowdy';
 
