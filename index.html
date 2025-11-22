@@ -1,90 +1,702 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Wedding</title>
+    <title>Teresa & Darin Are Getting Married! 🎉</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Space+Mono&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --coral: #FF6B6B;
+            --yellow: #FFE66D;
+            --mint: #4ECDC4;
+            --purple: #A855F7;
+            --pink: #FF85A2;
+            --blue: #60A5FA;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #FFF5F5 0%, #F0F9FF 50%, #FDF4FF 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            background: var(--coral);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            background: var(--yellow);
+            top: 20%;
+            right: 10%;
+            animation-delay: -5s;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background: var(--mint);
+            bottom: 30%;
+            left: 8%;
+            animation-delay: -10s;
+        }
+
+        .shape:nth-child(4) {
+            width: 50px;
+            height: 50px;
+            background: var(--purple);
+            top: 60%;
+            right: 5%;
+            animation-delay: -15s;
+            border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+        }
+
+        .shape:nth-child(5) {
+            width: 70px;
+            height: 70px;
+            background: var(--pink);
+            bottom: 10%;
+            right: 20%;
+            animation-delay: -7s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-30px) rotate(90deg);
+            }
+
+            50% {
+                transform: translateY(0) rotate(180deg);
+            }
+
+            75% {
+                transform: translateY(30px) rotate(270deg);
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            z-index: 100;
+            border-bottom: 3px dashed var(--coral);
+        }
+
+        nav a {
+            text-decoration: none;
             color: #333;
-            background-color: #faf9f6;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: var(--yellow);
+            transform: rotate(-3deg) scale(1.1);
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
             text-align: center;
+            padding-top: 80px;
         }
-        header {
-            width: 100%;
-            padding: 60px 20px;
-            background: #ffffff;
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            background: linear-gradient(45deg, var(--coral), var(--purple), var(--mint));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: wiggle 3s infinite ease-in-out;
         }
-        h1 {
-            font-size: 2.5rem;
-            margin: 0;
-            letter-spacing: 1px;
+
+        @keyframes wiggle {
+
+            0%,
+            100% {
+                transform: rotate(-2deg);
+            }
+
+            50% {
+                transform: rotate(2deg);
+            }
         }
-        .date {
+
+        .hero .ampersand {
+            font-size: clamp(4rem, 15vw, 8rem);
+            color: var(--pink);
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .date-badge {
+            background: var(--yellow);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: 'Space Mono', monospace;
             font-size: 1.2rem;
-            margin-top: 10px;
-            color: #888;
+            margin-top: 2rem;
+            border: 3px solid #333;
+            box-shadow: 5px 5px 0 #333;
+            transform: rotate(3deg);
         }
-        .location {
-            font-size: 1.1rem;
-            margin-top: 5px;
-        }
-        .section {
-            margin: 50px 0;
-            max-width: 600px;
-            padding: 0 20px;
-        }
-        footer {
-            margin: 40px 0;
-            font-size: 0.9rem;
-            color: #777;
-        }
-        footer p {
-            margin: 6px 0;
-        }
-        .button {
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
             display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            background-color: #c9a0dc;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 1rem;
         }
-        .button:hover {
-            opacity: 0.85;
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--mint);
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .story-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 3px solid #333;
+            box-shadow: 8px 8px 0 var(--coral);
+            margin-top: 1rem;
+            transform: rotate(-1deg);
+            transition: transform 0.3s;
+        }
+
+        .story-card:hover {
+            transform: rotate(1deg) scale(1.02);
+        }
+
+        .timeline {
+            margin-top: 2rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+
+        .timeline-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            border: 3px solid #333;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid #333;
+            flex: 1;
+        }
+
+        .timeline-content h3 {
+            font-family: 'Space Mono', monospace;
+            color: var(--coral);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .detail-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 3px solid #333;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .detail-card:nth-child(1) {
+            box-shadow: 6px 6px 0 var(--mint);
+        }
+
+        .detail-card:nth-child(2) {
+            box-shadow: 6px 6px 0 var(--yellow);
+        }
+
+        .detail-card:nth-child(3) {
+            box-shadow: 6px 6px 0 var(--pink);
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .detail-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-card h3 {
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 0.5rem;
+        }
+
+        .rsvp-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 3px solid #333;
+            box-shadow: 8px 8px 0 var(--purple);
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-family: 'Space Mono', monospace;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #333;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--mint);
+            box-shadow: 4px 4px 0 var(--mint);
+        }
+
+        button {
+            background: var(--coral);
+            color: white;
+            border: 3px solid #333;
+            padding: 1rem 2rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 #333;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 #333;
+        }
+
+        button:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 #333;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            border: 2px solid #333;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .faq-question:hover {
+            background: #f9f9f9;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item.open .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 200px;
+        }
+
+        .faq-item.open .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--coral);
+            transition: transform 0.3s;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            font-family: 'Space Mono', monospace;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer .hearts {
+            font-size: 2rem;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>Teresa & Darin</h1>
-        <p class="date">June 14, 2026</p>
-        <p class="location">San Francisco, California</p>
-    </header>
-
-    <div class="section">
-        <h2>We Are Getting Married</h2>
-        <p>Welcome to our wedding website. We cannot wait to celebrate with family and friends.</p>
-        <a href="#details" class="button">View Details</a>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
     </div>
 
-    <div id="details" class="section">
-        <h2>Event Details</h2>
-        <p>Ceremony and reception information will be shared soon. Please check back for updates.</p>
-    </div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#details">Details</a>
+        <a href="#story">Our Story</a>
+
+        <a href="#rsvp">RSVP</a>
+        <a href="#faq">FAQ</a>
+    </nav>
+
+    <section class="hero" id="home">
+        <h1>Teresa</h1>
+        <span class="ampersand">&</span>
+        <h1>Darin</h1>
+        <div class="date-badge">August 8, 2026 • 6:00 PM • Saturday</div>
+    </section>
+
+    <section id="details">
+        <h2>The Details ✨</h2>
+        <div class="details-grid">
+            <div class="detail-card">
+                <div class="icon">🎉</div>
+                <h3>Reception</h3>
+                <p><b>Tasty Szechuan Restaurant</b><br><br>
+                    707 148th Ave NE, Bellevue, WA 98007<br><br>6:00 PM - 9:00pm</p>
+                <br>
+                <br>
+                Please arrive no later than 6:15 for seating.
+            </div>
+            <div class="detail-card">
+                <div class="icon">👗</div>
+                <h3>Dress Code</h3>
+                <p>idk
+                    <br> Just plz dont weara white dress or suit 💀
+                </p>
+            </div>
+            <div class="detail-card">
+                <div class="icon">🪩</div>
+                <h3>Afterparty (optional!)</h3>
+                <p>a club</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="story">
+        <h2>What can you expect? 😮</h2>
+        <div class="story-card">
+            <p>This is going to be a <b>non-normie</b> reception with some <b> normie activities.</b>
+                By that, it's probably not similar to the traditional weddings you've been to before.</b></b>
+
+                Please read ahead to understand what to expect
+            </p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot">🤐</div>
+                <div class="timeline-content">
+                    <h3>you aren't going to see us kiss</h3><br>
+                    <p> Like we've mentioned, we actually will be getting legally married and having a ceremony with
+                        immediate family the day before. So you aren't gonna see us say our vows or kiss haha</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">💕</div>
+                <div class="timeline-content">
+                    <h3>we like you a lot!</h3><br>
+                    <p>This is an intimate reception with our close friends. We want to celebrate the next chapter of
+                        our lives with you but we're also introverted.
+                        That's why you can expect &lt;50 people at the reception! It's gonna be small, chill, memorable,
+                        and fun.
+                        Plus the only adults here are our parents xD
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">🍰</div>
+                <div class="timeline-content">
+                    <h3>some surprises</h3><br>
+                    <p>Besides eating, drinking, and yapping, we'll also have speeches and cake cutting. So excited for
+                        the cake omg!! We also have a few fun surprises planned throughout the night. idk I thought I
+                        heard something about a raffle and games....
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rsvp">
+        <h2>RSVP 💌</h2>
+        <p><b>Please RSVP by ________</b></p>
+        <br><br><br>
+        <button type="submit">RSVP! 🎉</button>
+        
+    </section>
+
+    <section id="faq">
+        <h2>FAQ 🤔</h2>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Can I bring a plus one?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Please check your RSVP form. If you're unsure/have questions, you can ask us</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Is there parking available?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Yes! Free parking is available at the restaurant.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What if I have dietary restrictions?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>I ask you that in the RSVP form</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What kind of food?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Chinese food</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Will there be drinks served?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>There will be both non alcoholic and alcoholic drinks. Note that the alcoholic drinks will be
+                    canned??</p>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <p>© 2026 Teresa &amp; Darin</p>
-        <p>❤️ Eng: Teresa</p>
-        <p>💀 PM: Darin</p>
+        <div class="hearts">💖💖💖</div>
+        <p>Can't wait to celebrate with you!</p>
+        <p>❤️ engineer, designer: Teresa (check out the <a href="https://github.com/teresa-darin/teresa-darin.github.io"
+                target="_blank">repo</a>)</p>
+        <p>💀 engineer manager: Darin</p>
     </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                q.parentElement.classList.toggle('open');
+            });
+        });
+
+        // Form submission with confetti
+        document.getElementById('rsvpForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            createConfetti();
+            setTimeout(() => {
+                alert('Thank you for your RSVP! We can\'t wait to celebrate with you! 🎉');
+                this.reset();
+            }, 500);
+        });
+
+        // Confetti effect
+        function createConfetti() {
+            const colors = ['#FF6B6B', '#FFE66D', '#4ECDC4', '#A855F7', '#FF85A2', '#60A5FA'];
+            const duration = 3000;
+            const particleCount = 250;
+
+            for (let i = 0; i < particleCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    const size = Math.random() * 12 + 6;
+                    confetti.style.cssText = `
+            left: ${Math.random() * 100}vw;
+            top: -20px;
+            width: ${size}px;
+            height: ${size}px;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+            transform: rotate(${Math.random() * 360}deg);
+          `;
+                    document.body.appendChild(confetti);
+
+                    const drift = (Math.random() - 0.5) * 200;
+                    const animation = confetti.animate([
+                        { transform: `translateY(0) translateX(0) rotate(0deg)`, opacity: 1 },
+                        { transform: `translateY(100vh) translateX(${drift}px) rotate(${Math.random() * 1080}deg)`, opacity: 0.7 }
+                    ], {
+                        duration: Math.random() * 2000 + 2500,
+                        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                    });
+
+                    animation.onfinish = () => confetti.remove();
+                }, Math.random() * duration);
+            }
+        }
+
+        // Trigger confetti on page load
+        window.addEventListener('load', createConfetti);
+
+        // Smooth scrolling
+        document.querySelectorAll('nav a').forEach(a => {
+            a.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
