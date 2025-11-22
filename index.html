@@ -52,7 +52,7 @@
         .shape:nth-child(1) {
             width: 80px;
             height: 80px;
-            background: var(--coral);
+            background: url('./img/darin-bubble.png') center/cover no-repeat;
             top: 10%;
             left: 5%;
             animation-delay: 0s;
@@ -471,7 +471,7 @@
         .password-overlay {
             position: fixed;
             inset: 0;
-            background: linear-gradient(135deg, #FF6B6B 0%, #A855F7 50%, #4ECDC4 100%);
+            background: url('./img/password-background.jpg') center/cover no-repeat;
             z-index: 9999;
             display: flex;
             align-items: center;
@@ -487,12 +487,13 @@
 
         .password-dialog {
             background: white;
-            padding: 3rem;
+            padding:1rem;
             border-radius: 30px;
             border: 4px solid #333;
             box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.2);
             text-align: center;
             max-width: 400px;
+            margin-top: 100px;
             width: 90%;
             animation: dialogBounce 0.5s ease-out;
         }
@@ -551,7 +552,7 @@
     <div class="password-overlay" id="passwordOverlay">
         <div class="password-dialog">
             <h2>you're invited!</h2>
-            <p>Please enter the password</p>
+            <p>Please enter the password to see the details</p>
             <input type="password" id="passwordInput" placeholder="Enter password..." autofocus>
             <button id="passwordBtn">Enter</button>
             <p class="error-msg" id="errorMsg"></p>
@@ -719,7 +720,7 @@
 
     <script>
         // Password protection
-        const SECRET_PASSWORD = 'nihaody';
+        const SECRET_PASSWORD = 'nihowdy';
 
         function checkPassword() {
             const input = document.getElementById('passwordInput');
@@ -729,7 +730,7 @@
                 document.getElementById('passwordOverlay').classList.add('hidden');
                 createConfetti();
             } else {
-                error.textContent = 'try again';
+                error.textContent = 'WRONG! try again';
                 input.value = '';
                 input.focus();
                 document.querySelector('.password-dialog').style.animation = 'none';
