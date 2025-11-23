@@ -27,7 +27,11 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #FFF5F5 0%, #F0F9FF 50%, #FDF4FF 100%);
+            /* background-color: #b6a5cf; */
+            /* Background svg from https://heropatterns.com/ */
+            /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23b51955' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E"); */
+            background-color: #7d56b9;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23ea4118' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E");
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -55,12 +59,11 @@
             position: absolute;
             border-radius: 50%;
             animation: float 20s infinite ease-in-out;
-            opacity: 0.6;
         }
 
         .shape:nth-child(1) {
-            width: 80px;
-            height: 80px;
+            width: 300px;
+            height: 300px;
             background: url('./img/darin-bubble.png') center/cover no-repeat;
             top: 10%;
             left: 5%;
@@ -68,42 +71,33 @@
         }
 
         .shape:nth-child(2) {
-            width: 60px;
-            height: 60px;
-            background: var(--yellow);
+            width: 300px;
+            height: 250px;
+            background: url('./img/teresa-bubble.png') center/cover no-repeat;
             top: 20%;
             right: 10%;
             animation-delay: -5s;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
         }
 
         .shape:nth-child(3) {
-            width: 100px;
-            height: 100px;
-            background: var(--mint);
+            width: 200px;
+            height: 200px;
+            background: url('./img/teresa-child.png') center/cover no-repeat;
             bottom: 30%;
             left: 8%;
             animation-delay: -10s;
         }
 
         .shape:nth-child(4) {
-            width: 50px;
-            height: 50px;
-            background: var(--purple);
+            width: 200px;
+            height: 200px;
+            background: url('./img/darin-child.png') center/cover no-repeat;
             top: 60%;
             right: 5%;
             animation-delay: -15s;
             border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
         }
 
-        .shape:nth-child(5) {
-            width: 70px;
-            height: 70px;
-            background: var(--pink);
-            bottom: 10%;
-            right: 20%;
-            animation-delay: -7s;
-        }
 
         @keyframes float {
 
@@ -208,9 +202,15 @@
         }
 
         .hero .ampersand {
-            font-size: clamp(4rem, 15vw, 8rem);
-            color: var(--pink);
-            display: block;
+            font-size: clamp(2rem, 8vw, 4rem);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: clamp(80px, 20vw, 150px);
+            height: clamp(80px, 20vw, 150px);
+            background: var(--pink);
+            border-radius: 50%;
             animation: bounce 2s infinite;
         }
 
@@ -288,7 +288,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: var(--purple);
+            background: var(--yellow);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -592,8 +592,8 @@
         <a href="#home">Home</a>
         <a href="#details">Details</a>
         <a href="#story">Expectations</a>
-
         <a href="#rsvp">RSVP</a>
+        <a href="#registry">Registry</a>
         <a href="#faq">FAQ</a>
     </nav>
 
@@ -611,7 +611,9 @@
                 <div class="icon">🎉</div>
                 <h3>Reception</h3>
                 <p><b>Tasty Szechuan Restaurant</b><br><br>
-                    <a href="https://www.google.com/maps?q=707+148th+Ave+NE,+Bellevue,+WA+98007" target="_blank">707 148th Ave NE, Bellevue, WA 98007</a><br><br>6:00 PM - 9:00pm</p>
+                    <a href="https://www.google.com/maps?q=707+148th+Ave+NE,+Bellevue,+WA+98007" target="_blank">707
+                        148th Ave NE, Bellevue, WA 98007</a><br><br>6:00 PM - 9:00pm
+                </p>
                 <br>
                 <br>
                 Please arrive no later than 6:15 for seating.
@@ -620,7 +622,7 @@
                 <div class="icon">👗</div>
                 <h3>Dress Code</h3>
                 <p>idk
-                    <br> Just plz dont wear a white dress or suit 💀<br> 
+                    <br> Just plz dont wear a white dress or suit 💀<br>
 
                     ask us if you have questions about what to wear
                 </p>
@@ -646,7 +648,7 @@
             <div class="timeline-item">
                 <div class="timeline-dot">🤐</div>
                 <div class="timeline-content">
-                    <h3>you aren't going to see us kiss</h3><br>
+                    <h3>you aren't going to see us get married</h3><br>
                     <p> Like we've mentioned, we actually will be getting legally married and having a ceremony with
                         immediate family the day before. So you aren't gonna see us say our vows or kiss haha</p>
                 </div>
@@ -683,6 +685,14 @@
 
     </section>
 
+    <section id="registry">
+        <h2>Registry 🧧 </h2>
+        <p><b>Your presence is the best gift; however, if you would like to commemorate the occasion, we kindly ask for
+                monetary gifts </b></p>
+        <br><br><br>
+
+    </section>
+
     <section id="faq">
         <h2>FAQ 🤔</h2>
         <div class="faq-item">
@@ -709,7 +719,7 @@
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer">
-                <p>I ask you that in the RSVP form</p>
+                <p>I ask you that in the RSVP form. </p>
             </div>
         </div>
         <div class="faq-item">
@@ -736,7 +746,7 @@
     <footer>
         <div class="hearts">💖💖💖</div>
         <p>Can't wait to celebrate with you!</p>
-        <p>❤️ engineer, designer: Teresa (check out the <a href="https://github.com/teresa-darin/teresa-darin.github.io"
+        <p>❤️ engineer: Teresa (check out the <a href="https://github.com/teresa-darin/teresa-darin.github.io"
                 target="_blank">repo</a>)</p>
         <p>💀 engineer manager: Darin</p>
     </footer>
@@ -750,7 +760,7 @@
 
 
         // Password protection
-        const SECRET_PASSWORD = 'nihowdy';
+        const SECRET_PASSWORD = 'h';
 
         function checkPassword() {
             const input = document.getElementById('passwordInput');
@@ -795,7 +805,7 @@
         // Confetti effect
         function createConfetti() {
             const colors = ['#FF6B6B', '#FFE66D', '#4ECDC4', '#A855F7', '#FF85A2', '#60A5FA'];
-            const duration = 3000;
+            const duration = 2000;
             const particleCount = 250;
 
             for (let i = 0; i < particleCount; i++) {
