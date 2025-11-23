@@ -211,9 +211,9 @@
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif;
+            font-family: "Comic Relief", serif;
             font-size: clamp(3rem, 10vw, 6rem);
-            background: linear-gradient(45deg, var(--coral), var(--purple), var(--mint));
+            background: white;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -539,7 +539,7 @@
 
         .password-dialog {
             background: white;
-            padding: 1rem;
+            padding: 0.75rem;
             border-radius: 30px;
             border: 4px solid #333;
             box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.2);
@@ -552,7 +552,7 @@
 
         @media (max-width: 768px) {
             .password-dialog {
-                padding: 2rem 1.5rem;
+                padding: 0.75rem
                 max-width: 320px;
             }
 
@@ -784,7 +784,7 @@
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer">
-                <p>I ask you that in the RSVP form. </p>
+                <p>We ask you that in the RSVP form. Ofc we will accommodate any dietary restrictions you have!</p>
             </div>
         </div>
         <div class="faq-item">
@@ -832,6 +832,7 @@
             const error = document.getElementById('errorMsg');
 
             if (input.value === SECRET_PASSWORD) {
+                window.scrollTo(0, 0);
                 document.getElementById('passwordOverlay').classList.add('hidden');
                 createConfetti();
             } else {
