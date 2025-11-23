@@ -9,12 +9,19 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Space+Mono&family=Poppins:wght@400;600&display=swap"
         rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Over+the+Rainbow&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Coral+Pixels&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Coral+Pixels&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
 
         :root {
             --coral: #FF6B6B;
@@ -26,7 +33,8 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: "Comic Relief", serif;
+            font-weight: 400;
             /* background-color: #b6a5cf; */
             /* Background svg from https://heropatterns.com/ */
             /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23b51955' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E"); */
@@ -96,6 +104,29 @@
             right: 5%;
             animation-delay: -15s;
             border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+        }
+
+        /* Smaller shapes for mobile */
+        @media (max-width: 768px) {
+            .shape:nth-child(1) {
+                width: 80px;
+                height: 80px;
+            }
+
+            .shape:nth-child(2) {
+                width: 80px;
+                height: 80px;
+            }
+
+            .shape:nth-child(3) {
+                width: 60px;
+                height: 60px;
+            }
+
+            .shape:nth-child(4) {
+                width: 60px;
+                height: 60px;
+            }
         }
 
 
@@ -239,7 +270,7 @@
         }
 
         h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Space Mono', monospace;
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
             position: relative;
@@ -393,8 +424,8 @@
         }
 
         button {
-            background: var(--coral);
-            color: white;
+            background: var(--yellow);
+            color: black;
             border: 3px solid #333;
             padding: 1rem 2rem;
             font-family: 'Space Mono', monospace;
@@ -519,6 +550,33 @@
             animation: dialogBounce 0.5s ease-out;
         }
 
+        @media (max-width: 768px) {
+            .password-dialog {
+                padding: 2rem 1.5rem;
+                max-width: 320px;
+            }
+
+            .password-dialog h2 {
+                font-size: 1.5rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .password-dialog p {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            .password-dialog input {
+                font-size: 1rem;
+                padding: 0.6rem 0.8rem;
+            }
+
+            .password-dialog button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
         @keyframes dialogBounce {
             0% {
                 transform: scale(0.8) rotate(-5deg);
@@ -572,7 +630,7 @@
 
     <div class="password-overlay" id="passwordOverlay">
         <div class="password-dialog">
-            <h2>you're invited!</h2>
+            <h2>you're invited! </h2>
             <p>Please enter the password to see the details</p>
             <input type="password" id="passwordInput" placeholder="Enter password..." autofocus>
             <button id="passwordBtn">Enter</button>
@@ -657,7 +715,8 @@
                 <div class="timeline-dot">💕</div>
                 <div class="timeline-content">
                     <h3>we like you a lot!</h3><br>
-                    <p>This is an intimate reception with our close friends. We want to celebrate the next chapter of
+                    <p>This is an intimate reception with an intentional guest list. We want to celebrate the next
+                        chapter of
                         our lives with you but we're also introverted.
                         That's why you can expect &lt;50 people at the reception! It's gonna be small, chill, memorable,
                         and fun.
@@ -679,17 +738,23 @@
 
     <section id="rsvp">
         <h2>RSVP 💌</h2>
-        <p><b>Please RSVP by ________</b></p>
-        <br><br><br>
+         <div class="faq-item">
+            <div class="faq-question">
+                <span>please RSVP by ________</span>
+            </div>
+        </div>
         <button type="submit">RSVP!</button>
 
     </section>
 
     <section id="registry">
         <h2>Registry 🧧 </h2>
-        <p><b>Your presence is the best gift; however, if you would like to commemorate the occasion, we kindly ask for
-                monetary gifts </b></p>
-        <br><br><br>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Your presence means the world to us. If you would like to mark the occasion with a gift, we kindly
+                    invite monetary contributions </span>
+            </div>
+        </div>
 
     </section>
 
@@ -728,7 +793,7 @@
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer">
-                <p>Chinese food</p>
+                <p>Chinese food. COME HUNGRY!</p>
             </div>
         </div>
         <div class="faq-item">
@@ -737,7 +802,7 @@
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer">
-                <p>There will be both non alcoholic and alcoholic drinks. Note that the alcoholic drinks will be
+                <p>There will be both non alcoholic and alcoholic drinks provided. Note that the alcoholic drinks will be
                     canned??</p>
             </div>
         </div>
