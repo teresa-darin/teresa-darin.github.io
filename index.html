@@ -463,6 +463,14 @@
             font-weight: 600;
         }
 
+        .non-bolded-text {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .faq-question:hover {
             background: #f9f9f9;
         }
@@ -650,6 +658,34 @@
             margin-bottom: 0 !important;
             margin-top: 1rem;
         }
+
+        .music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            z-index: 101;
+            cursor: pointer;
+            background: white;
+            border: 3px solid #333;
+            box-shadow: 4px 4px 0 #333;
+            transition: all 0.3s;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .music-toggle.playing::before {
+            content: '🎵';
+        }
+
+        .music-toggle.paused::before {
+            content: '🔇';
+        }
     </style>
 </head>
 
@@ -665,6 +701,12 @@
         </div>
     </div>
 
+    <audio id="bgMusic" loop>
+        <source src="./music/chinez.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <button class="music-toggle" id="musicToggle">🔇</button>
     <div class="floating-shapes">
         <div class="shape"></div>
         <div class="shape"></div>
@@ -766,18 +808,26 @@
     <section id="rsvp">
         <h2>RSVP 💌</h2>
         <div class="faq-item">
-            <div class="faq-question">
+            <div class="non-bolded-text">
                 <span>please RSVP by ________</span>
             </div>
         </div>
-        <button type="submit">RSVP!</button>
+        <button type="button" id="rsvpBtn">RSVP!</button>
+        <script>
+            document.getElementById('rsvpBtn').addEventListener('click', () => {
+                const linkX = 'https://example.com/X'; // replace with actual link X
+                const linkY = 'https://example.com/Y'; // replace with actual link Y
+                const target = (typeof isGroupA !== 'undefined' && isGroupA) ? linkX : linkY;
+                window.open(target, '_blank', 'noopener');
+            });
+        </script>
 
     </section>
 
     <section id="registry">
         <h2>Registry 🧧 </h2>
         <div class="faq-item">
-            <div class="faq-question">
+            <div class="non-bolded-text">
                 <span>Your presence means the world to us. If you would like to mark the occasion with a gift, we kindly
                     invite monetary contributions </span>
             </div>
@@ -856,6 +906,26 @@
         const SECRET_PASSWORD = 'h';
         const SECOND_SECRET_PASSWORD = 'g';
 
+        // Music toggleß
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        let musicPlaying = false;
+
+        // Add music toggle functionality
+        musicToggle.addEventListener('click', () => {
+            if (musicPlaying) {
+                bgMusic.pause();
+                musicToggle.classList.remove('playing');
+                musicToggle.classList.add('paused');
+                musicPlaying = false;
+            } else {
+                bgMusic.play();
+                musicToggle.classList.add('playing');
+                musicToggle.classList.remove('paused');
+                musicPlaying = true;
+            }
+        });
+
         function checkPassword() {
             const input = document.getElementById('passwordInput');
             const error = document.getElementById('errorMsg');
@@ -864,6 +934,14 @@
                 isGroupA = true;
                 window.scrollTo(0, 0);
                 document.getElementById('passwordOverlay').classList.add('hidden');
+
+                // Start music
+                bgMusic.currentTime = 60;
+                bgMusic.play();
+                musicPlaying = true;
+                musicToggle.classList.add('playing');
+                musicToggle.classList.remove('paused');
+
                 createConfetti();
             } else if (input.value === SECOND_SECRET_PASSWORD) {
                 isGroupB = true;
