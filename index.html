@@ -38,8 +38,13 @@
             /* background-color: #b6a5cf; */
             /* Background svg from https://heropatterns.com/ */
             /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23b51955' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E"); */
-            background-color: #7d56b9;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23ea4118' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E");
+            /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23ea4118' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E"); */
+            /* background-image: url('./img/dddepth-007.jpg'); */
+            background-image: url('./img/dddepth-007.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -210,6 +215,30 @@
             padding-top: 80px;
         }
 
+        /* Decorative box behind the names */
+        .hero {
+            position: relative;
+        }
+
+        .hero-box {
+            position: absolute;
+            left: 50%;
+            top: 45%;
+            transform: translate(-50%, -50%);
+            /* Size can be changed here (or overridden inline). Default is responsive */
+            width: clamp(280px, 48vw, 720px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.95;
+            /* /* color: var(--box-color, #A855F7); */
+        }
+
+        .hero h1,
+        .hero .ampersand {
+            position: relative;
+            z-index: 2;
+        }
+
         .hero h1 {
             font-family: "Comic Relief", serif;
             font-size: clamp(3rem, 10vw, 6rem);
@@ -263,10 +292,36 @@
             border-radius: 50px;
             font-family: 'Space Mono', monospace;
             font-size: 1.2rem;
-            margin-top: 2rem;
+            margin-top: 8rem;
             border: 3px solid #333;
             box-shadow: 5px 5px 0 #333;
             transform: rotate(3deg);
+            position: relative;
+            /* keep above decorative arrow */
+            z-index: 3;
+        }
+
+        /* wrapper for date + decorative arrow */
+        .date-wrap {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* decorative arrow placed under the date badge */
+        .date-arrow {
+            position: absolute;
+            left: 50%;
+            top: calc(100% + 12px);
+            /* places arrow below the badge */
+            transform: translateX(-50%);
+            width: clamp(48px, 8vw, 140px);
+            height: auto;
+            pointer-events: none;
+            z-index: 1;
+            /* below the badge but above background */
+            color: var(--coral);
+            /* if SVG uses currentColor */
+            opacity: 0.95;
         }
 
         h2 {
@@ -316,8 +371,8 @@
         }
 
         .timeline-dot {
-            width: 40px;
-            height: 40px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             background: var(--yellow);
             display: flex;
@@ -326,6 +381,15 @@
             font-size: 1.2rem;
             flex-shrink: 0;
             border: 3px solid #333;
+        }
+
+        /* If you use an <img> inside .timeline-dot, these rules size and round it */
+        .timeline-dot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
         }
 
         .timeline-content {
@@ -344,29 +408,60 @@
         .details-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
             margin-top: 2rem;
         }
 
         .detail-card {
-            background: white;
             padding: 2rem;
             border-radius: 20px;
-            border: 3px solid #333;
             text-align: center;
             transition: all 0.3s;
+            position: relative;
+            /* allow decorative pseudo-element */
+            overflow: visible;
+            /* let the decorative SVG show outside the box */
         }
 
-        .detail-card:nth-child(1) {
-            box-shadow: 6px 6px 0 var(--mint);
+        /* Decorative SVG borders for the first two detail-cards */
+        .details-grid .detail-card:nth-child(1)::before,
+        .details-grid .detail-card:nth-child(2)::before {
+            content: '';
+            position: absolute;
+            left: -18px;
+            top: -18px;
+            right: -18px;
+            bottom: -18px;
+            pointer-events: none;
+            z-index: -1;
+            /* behind the card */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.95;
         }
 
-        .detail-card:nth-child(2) {
-            box-shadow: 6px 6px 0 var(--yellow);
+        .details-grid .detail-card:nth-child(1) {
+            background-image: url('./assets/box-4.svg');
+            background-position: bottom;
         }
 
-        .detail-card:nth-child(3) {
-            box-shadow: 6px 6px 0 var(--pink);
+        .details-grid .detail-card:nth-child(2) {
+            background-image: url('./assets/box-5.svg');
+            background-position: bottom;
+        }
+
+        /* Reduce decorative overflow on small screens */
+        @media (max-width: 768px) {
+
+            .details-grid .detail-card:nth-child(1)::before,
+            .details-grid .detail-card:nth-child(2)::before {
+                left: -8px;
+                top: -8px;
+                right: -8px;
+                bottom: -8px;
+                background-size: 120% auto;
+                opacity: 0.9;
+            }
         }
 
         .detail-card:hover {
@@ -376,6 +471,18 @@
         .detail-card .icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* If you use an <img> inside .icon, these rules size and round it */
+        .detail-card .icon img {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
         }
 
         .detail-card h3 {
@@ -444,6 +551,38 @@
         button:active {
             transform: translate(2px, 2px);
             box-shadow: 2px 2px 0 #333;
+        }
+
+        .fake-content {
+            margin-bottom: 3rem;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .rsvp-section {
+            position: relative;
+            /* Required for ::before positioning */
+            padding: 2rem;
+            /* Add padding so content doesn't overlap the border */
+        }
+
+        /* Decorative SVG border outside the content */
+        .rsvp-section::before {
+            content: '';
+            position: absolute;
+            left: -60px;
+            top: -30px;
+            right: -50px;
+            bottom: -100px;
+            pointer-events: none;
+            z-index: -1;
+            /* Behind the content */
+            background-image: url('./assets/box-2.svg');
+            background-repeat: no-repeat;
+            background-position: left;
+            /* or adjust size as needed */
+            opacity: 0.95;
         }
 
         .faq-item {
@@ -725,17 +864,24 @@
     </nav>
 
     <section class="hero" id="home">
+        <!-- Decorative circle placed behind the names — using the real asset file `circle-4.svg` -->
+        <img src="./assets/misc-30.svg" class="hero-box" alt="" aria-hidden="true" />
         <h1>Teresa</h1>
         <span class="ampersand">&</span>
         <h1>Darin</h1>
-        <div class="date-badge">August 8, 2026 • 6:00 PM • Saturday</div>
+        <div class="date-wrap">
+            <div class="date-badge">August 8, 2026 • 6:00 PM • Saturday</div>
+            <img src="./assets/line-7.svg" class="date-arrow" alt="" aria-hidden="true" />
+        </div>
     </section>
 
     <section id="details">
-        <h2>The Details ✨</h2>
+        <h2>the details</h2>
         <div class="details-grid">
             <div class="detail-card">
-                <div class="icon">🎉</div>
+                <div class="icon">
+                    <img src="./img/reception-logo.png" alt="Reception">
+                </div>
                 <h3>Reception</h3>
                 <p><b>Tasty Szechuan Restaurant</b><br><br>
                     <a href="https://www.google.com/maps?q=707+148th+Ave+NE,+Bellevue,+WA+98007" target="_blank">707
@@ -748,22 +894,23 @@
             <div class="detail-card">
                 <div class="icon">👗</div>
                 <h3>Dress Code</h3>
-                <p>idk
+                <p>Cocktail attire - Mini/midi/maxi length formal wear (in that order of preference)<br><br>
+                    <br><br>
+
+                    <a href="https://pin.it/37aDmFkOM" target="_blank">Examples</a>
+
+                    honestly you can wear what you have that's nice and formal enough - you should feel uncomfortable
+                    wearing it in public <br>
                     <br> Just plz dont wear a white dress or suit 💀<br>
 
                     ask us if you have questions about what to wear
                 </p>
             </div>
-            <div class="detail-card">
-                <div class="icon">🪩</div>
-                <h3>Afterparty (optional!)</h3>
-                <p>a club</p>
-            </div>
         </div>
     </section>
 
     <section id="story">
-        <h2>What can you expect? 😮</h2>
+        <h2>What can you expect? </h2>
         <div class="story-card">
             <p>This is going to be a <b>non-normie</b> reception with some <b> normie activities.</b>
                 By that, it's probably not similar to the traditional weddings you've been to before.</b></b>
@@ -773,7 +920,9 @@
         </div>
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-dot">🤐</div>
+                <div class="timeline-dot">
+                    <img src="./assets/glasses.svg" alt="Ceremony">
+                </div>
                 <div class="timeline-content">
                     <h3>you aren't going to see us get married</h3><br>
                     <p> Like we've mentioned, we actually will be getting legally married and having a ceremony with
@@ -781,12 +930,13 @@
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-dot">💕</div>
+                <div class="timeline-dot">
+                    <img src="./assets/freckle.svg" alt="Love">
+                </div>
                 <div class="timeline-content">
                     <h3>we like you a lot!</h3><br>
-                    <p>This is an intimate reception with an intentional guest list. We want to celebrate the next
-                        chapter of
-                        our lives with you but we're also introverted.
+                    <p>This is an intimate reception with an intentional guest list. We want to celebrate our marriage
+                        with you but we're also introverted.
                         That's why you can expect &lt;50 people at the reception! It's gonna be small, chill, memorable,
                         and fun.
                         Plus the only adults here are our parents xD
@@ -794,7 +944,9 @@
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-dot">🍰</div>
+                <div class="timeline-dot">
+                    <img src="./assets/surprise.svg" alt="Cake">
+                </div>
                 <div class="timeline-content">
                     <h3>some surprises</h3><br>
                     <p>Besides eating, drinking, and yapping, we'll also have speeches and cake cutting. So excited for
@@ -806,37 +958,39 @@
     </section>
 
     <section id="rsvp">
-        <h2>RSVP 💌</h2>
-        <div class="faq-item">
-            <div class="non-bolded-text">
-                <span>please RSVP by ________</span>
+        <h2>RSVP</h2>
+        <div class="rsvp-section">
+            <div class="fake-content">
+                <div class="non-bolded-text">
+                    <span>please RSVP by <b>May 1 2026</b></span>
+                </div>
             </div>
+            <button type="button" id="rsvpBtn">RSVP!</button>
+            <script>
+                document.getElementById('rsvpBtn').addEventListener('click', () => {
+                    const linkX = 'https://example.com/X'; // replace with actual link X
+                    const linkY = 'https://example.com/Y'; // replace with actual link Y
+                    const target = (typeof isGroupA !== 'undefined' && isGroupA) ? linkX : linkY;
+                    window.open(target, '_blank', 'noopener');
+                });
+            </script>
         </div>
-        <button type="button" id="rsvpBtn">RSVP!</button>
-        <script>
-            document.getElementById('rsvpBtn').addEventListener('click', () => {
-                const linkX = 'https://example.com/X'; // replace with actual link X
-                const linkY = 'https://example.com/Y'; // replace with actual link Y
-                const target = (typeof isGroupA !== 'undefined' && isGroupA) ? linkX : linkY;
-                window.open(target, '_blank', 'noopener');
-            });
-        </script>
 
     </section>
 
     <section id="registry">
-        <h2>Registry 🧧 </h2>
-        <div class="faq-item">
+        <h2>Registry </h2>
+        <div class="fake-content">
             <div class="non-bolded-text">
-                <span>Your presence means the world to us. If you would like to mark the occasion with a gift, we kindly
-                    invite monetary contributions </span>
+                <span>Your presence is the greatest gift of all. If you wish to honor the occasion with a gift, a
+                    monetary contribution would be sincerely appreciated. </span>
             </div>
         </div>
 
     </section>
 
     <section id="faq">
-        <h2>FAQ 🤔</h2>
+        <h2>FAQ</h2>
         <div class="faq-item">
             <div class="faq-question">
                 <span>Can I bring a plus one?</span>
@@ -861,7 +1015,8 @@
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer">
-                <p>We ask you that in the RSVP form. Ofc we will accommodate any dietary restrictions you have!</p>
+                <p>We ask you that in the RSVP form. Ofc we will accommodate any dietary restrictions you have! Please
+                    note this is family style dining.</p>
             </div>
         </div>
         <div class="faq-item">
@@ -870,7 +1025,16 @@
                 <span class="faq-toggle">+</span>
             </div>
             <div class="faq-answer">
-                <p>Chinese food. COME HUNGRY!</p>
+                <p>Chinese food. COME HUNGRY!!!</p>
+            </div>
+        </div>
+         <div class="faq-item">
+            <div class="faq-question">
+                <span>Are children allowed?</span>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Unfortunately there are no children allowed </p>
             </div>
         </div>
         <div class="faq-item">
@@ -936,11 +1100,11 @@
                 document.getElementById('passwordOverlay').classList.add('hidden');
 
                 // Start music
-                bgMusic.currentTime = 60;
-                bgMusic.play();
-                musicPlaying = true;
-                musicToggle.classList.add('playing');
-                musicToggle.classList.remove('paused');
+                // bgMusic.currentTime = 60;
+                // bgMusic.play();
+                // musicPlaying = true;
+                // musicToggle.classList.add('playing');
+                // musicToggle.classList.remove('paused');
 
                 createConfetti();
             } else if (input.value === SECOND_SECRET_PASSWORD) {
