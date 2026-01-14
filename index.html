@@ -5,7 +5,7 @@
     <link rel="preload" href="./img/password-background.jpg" as="image">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teresa & Darin Are Getting Married! 🎉</title>
+    <title>Teresa & Darin Are Getting Married! 🎉</title> 
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Space+Mono&family=Poppins:wght@400;600&display=swap"
         rel="stylesheet">
@@ -1277,11 +1277,12 @@
         img.src = './img/password-background.jpg';
 
         let isGroupA = false;
-        let isGroupB = false;
 
         // Password protection
-        const SECRET_PASSWORD = 'h';
-        const SECOND_SECRET_PASSWORD = 'g';
+        // GroupA
+        const SECRET_PASSWORD = 'shibar';
+        // GroupB
+        const SECOND_SECRET_PASSWORD = 'nihowdy';
 
         // Music toggleß
         const bgMusic = document.getElementById('bgMusic');
@@ -1321,9 +1322,15 @@
 
                 createConfetti();
             } else if (input.value === SECOND_SECRET_PASSWORD) {
-                isGroupB = true;
                 window.scrollTo(0, 0);
                 document.getElementById('passwordOverlay').classList.add('hidden');
+
+                // Start music
+                // bgMusic.currentTime = 60;
+                bgMusic.play();
+                musicPlaying = true;
+                musicToggle.classList.add('playing');
+                musicToggle.classList.remove('paused');
                 createConfetti();
             } else {
                 error.textContent = 'WRONG! try again';
