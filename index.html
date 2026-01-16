@@ -2,26 +2,24 @@
 <html lang="en">
 
 <head>
-    <link rel="preload" href="./img/password-background.jpg" as="image">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teresa & Darin Are Getting Married! 🎉</title> 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Space+Mono&family=Poppins:wght@400;600&display=swap"
-        rel="stylesheet">
+    <title>Teresa & Darin Are Getting Married! 🎉</title>
+    
+    <!-- Consolidated Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Over+the+Rainbow&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Coral+Pixels&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Coral+Pixels&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Coral+Pixels&family=Over+the+Rainbow&family=Playfair+Display:wght@700&family=Poppins:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical asset -->
+    <link rel="preload" href="./img/password-background.jpg" as="image">
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
 
         :root {
             --coral: #FF6B6B;
@@ -43,14 +41,13 @@
             background-repeat: no-repeat;
             min-height: 100vh;
             overflow-x: hidden;
-        }
-
-        body {
-            visibility: hidden;
+            /* Start hidden to prevent FOUC, handled by JS with fallback */
+            opacity: 0; 
+            transition: opacity 0.5s ease-in;
         }
 
         body.loaded {
-            visibility: visible;
+            opacity: 1;
         }
 
         .floating-shapes {
@@ -107,48 +104,16 @@
             border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
         }
 
-        /* Smaller shapes for mobile */
         @media (max-width: 768px) {
-            .shape:nth-child(1) {
-                width: 80px;
-                height: 80px;
-            }
-
-            .shape:nth-child(2) {
-                width: 80px;
-                height: 80px;
-            }
-
-            .shape:nth-child(3) {
-                width: 60px;
-                height: 60px;
-            }
-
-            .shape:nth-child(4) {
-                width: 60px;
-                height: 60px;
-            }
+            .shape:nth-child(1), .shape:nth-child(2) { width: 80px; height: 80px; }
+            .shape:nth-child(3), .shape:nth-child(4) { width: 60px; height: 60px; }
         }
 
-
         @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-
-            25% {
-                transform: translateY(-30px) rotate(90deg);
-            }
-
-            50% {
-                transform: translateY(0) rotate(180deg);
-            }
-
-            75% {
-                transform: translateY(30px) rotate(270deg);
-            }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-30px) rotate(90deg); }
+            50% { transform: translateY(0) rotate(180deg); }
+            75% { transform: translateY(30px) rotate(270deg); }
         }
 
         nav {
@@ -157,13 +122,11 @@
             left: 0;
             right: 0;
             background: linear-gradient(to bottom, #0997FF 0%, #0053EE 50%, #0050EE 51%, #06F 100%);
-            backdrop-filter: none;
             padding: 0.4rem 2rem;
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             z-index: 100;
-            border-bottom: none;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
@@ -178,21 +141,8 @@
             transition: all 0.2s;
         }
 
-        @media (max-width: 600px) {
-            nav {
-                gap: 0.5rem;
-                padding: 0.4rem 1rem;
-            }
-
-            nav a {
-                font-size: 0.75rem;
-                padding: 0.35rem 0.6rem;
-            }
-        }
-
         nav a:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: none;
         }
 
         nav a:active {
@@ -238,10 +188,6 @@
             align-items: center;
             text-align: center;
             padding-top: 80px;
-        }
-
-        /* Decorative box behind the names */
-        .hero {
             position: relative;
         }
 
@@ -250,16 +196,13 @@
             left: 50%;
             top: 45%;
             transform: translate(-50%, -50%);
-            /* Size can be changed here (or overridden inline). Default is responsive */
             width: clamp(280px, 48vw, 720px);
             pointer-events: none;
             z-index: 0;
             opacity: 0.95;
-            /* /* color: var(--box-color, #A855F7); */
         }
 
-        .hero h1,
-        .hero .ampersand {
+        .hero h1, .hero .ampersand {
             position: relative;
             z-index: 2;
         }
@@ -275,15 +218,8 @@
         }
 
         @keyframes wiggle {
-
-            0%,
-            100% {
-                transform: rotate(-2deg);
-            }
-
-            50% {
-                transform: rotate(2deg);
-            }
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
         }
 
         .hero .ampersand {
@@ -300,15 +236,8 @@
         }
 
         @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         .date-badge {
@@ -325,11 +254,6 @@
             z-index: 3;
         }
 
-        .date-wrap {
-            position: relative;
-            display: inline-block;
-        }
-
         h2 {
             font-family: 'Tahoma', sans-serif;
             font-size: 1.5rem;
@@ -337,16 +261,11 @@
             margin-bottom: 1.5rem;
             position: relative;
             display: inline-block;
-            color: #003DA3;
             background: linear-gradient(to bottom, #0997FF 0%, #0053EE 50%, #0050EE 51%, #06F 100%);
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 3px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        h2::after {
-            display: none;
         }
 
         .story-card {
@@ -364,9 +283,7 @@
             transform: rotate(1deg) scale(1.02);
         }
 
-        .timeline {
-            margin-top: 2rem;
-        }
+        .timeline { margin-top: 2rem; }
 
         .timeline-item {
             display: flex;
@@ -388,7 +305,6 @@
             border: 3px solid #333;
         }
 
-        /* If you use an <img> inside .timeline-dot, these rules size and round it */
         .timeline-dot img {
             width: 100%;
             height: 100%;
@@ -422,12 +338,9 @@
             text-align: center;
             transition: all 0.3s;
             position: relative;
-            /* allow decorative pseudo-element */
             overflow: visible;
-            /* let the decorative SVG show outside the box */
         }
 
-        /* Decorative SVG borders for the first two detail-cards */
         .details-grid .detail-card:nth-child(1)::before,
         .details-grid .detail-card:nth-child(2)::before {
             content: '';
@@ -438,7 +351,6 @@
             bottom: -18px;
             pointer-events: none;
             z-index: -1;
-            /* behind the card */
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
@@ -453,25 +365,6 @@
             flex-wrap: wrap;
         }
 
-        /* Mobile adjustments */
-        @media (max-width: 768px) {
-            .example-outfits-grid {
-                flex-direction: column;
-                /* Stack vertically */
-                gap: 15px;
-            }
-
-            .outfit-card {
-                width: 100%;
-            }
-
-            .outfit-card img {
-                height: 300px;
-                /* Smaller height on mobile */
-                max-width: 100%;
-            }
-        }
-
         .outfit-card {
             flex: 1;
             display: flex;
@@ -481,51 +374,12 @@
         .outfit-card img {
             max-width: 100%;
             height: 400px;
-            /* Set the height you want */
             width: auto;
             object-fit: contain;
-            /* Scales down to fit without cropping */
         }
 
-        /* Reduce decorative overflow on small screens */
-        @media (max-width: 768px) {
-
-            .details-grid .detail-card:nth-child(1)::before,
-            .details-grid .detail-card:nth-child(2)::before {
-                left: -8px;
-                top: -8px;
-                right: -8px;
-                bottom: -8px;
-                background-size: 120% auto;
-                opacity: 0.9;
-            }
-        }
-
-        .detail-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .detail-card .icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* If you use an <img> inside .icon, these rules size and round it */
-        .detail-card .icon img {
-            width: 64px;
-            height: 64px;
-            object-fit: cover;
-            border-radius: 12px;
-            display: block;
-        }
-
-        .detail-card h3 {
-            font-family: 'Space Mono', monospace;
-            margin-bottom: 0.5rem;
-        }
+        .detail-card:hover { transform: translateY(-5px); }
+        .detail-card h3 { font-family: 'Space Mono', monospace; margin-bottom: 0.5rem; }
 
         .info-background {
             background: white;
@@ -536,75 +390,11 @@
             margin-top: 2rem;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            font-family: 'Space Mono', monospace;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 2px solid #333;
-            border-radius: 10px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--mint);
-            box-shadow: 4px 4px 0 var(--mint);
-        }
-
-        button {
-            background: var(--yellow);
-            color: black;
-            border: 3px solid #333;
-            padding: 1rem 2rem;
-            font-family: 'Space Mono', monospace;
-            font-size: 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 4px 4px 0 #333;
-            transition: all 0.2s;
-        }
-
-        button:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 #333;
-        }
-
-        button:active {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0 #333;
-        }
-
-        .fake-content {
-            margin-bottom: 3rem;
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-        }
-
         .rsvp-section {
             position: relative;
-            /* Required for ::before positioning */
             padding: 2rem;
-            /* Add padding so content doesn't overlap the border */
         }
 
-        /* Decorative SVG border outside the content */
         .rsvp-section::before {
             content: '';
             position: absolute;
@@ -625,16 +415,7 @@
             overflow: hidden;
         }
 
-        .faq-question {
-            padding: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-        }
-
-        .non-bolded-text {
+        .faq-question, .non-bolded-text {
             padding: 1.5rem;
             cursor: pointer;
             display: flex;
@@ -642,9 +423,8 @@
             align-items: center;
         }
 
-        .faq-question:hover {
-            background: #f9f9f9;
-        }
+        .faq-question { font-weight: 600; }
+        .faq-question:hover { background: #f9f9f9; }
 
         .faq-answer {
             padding: 0 1.5rem;
@@ -658,9 +438,7 @@
             max-height: 200px;
         }
 
-        .faq-item.open .faq-toggle {
-            transform: rotate(45deg);
-        }
+        .faq-item.open .faq-toggle { transform: rotate(45deg); }
 
         .faq-toggle {
             font-size: 1.5rem;
@@ -682,15 +460,8 @@
         }
 
         @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.2);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
         .confetti {
@@ -698,7 +469,6 @@
             pointer-events: none;
             z-index: 1000;
         }
-
 
         .password-overlay {
             position: fixed;
@@ -745,15 +515,12 @@
             gap: 0.5rem;
         }
 
-        .password-dialog-content {
-            padding: 1.5rem;
-            background: #ECE9D8;
-        }
+        .password-dialog-content { padding: 1.5rem; background: #ECE9D8; }
 
         .password-dialog input {
             margin-bottom: 1.5rem;
-            text-align: left;
-            font-size: 0.85rem;
+            text-align: center;
+            font-size: 1.1rem;
             background: white;
             border: 1px solid;
             border-color: #7F9DB9 #D4D0C8 #D4D0C8 #7F9DB9;
@@ -761,16 +528,13 @@
             box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
             font-family: 'Tahoma', sans-serif;
             padding: 0.4rem 0.5rem;
+            width: 100%;
         }
 
         .password-dialog input:focus {
             border-color: #608DB8 #C0C0C0 #C0C0C0 #608DB8;
             outline: none;
             box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.15);
-        }
-
-        .password-dialog button {
-            width: 100%;
         }
 
         .xp-button {
@@ -792,113 +556,11 @@
         .xp-button:hover {
             background: linear-gradient(to bottom, #FFFBF0 0%, #F0EDE0 100%) !important;
             border-color: #0055E5 !important;
-            transform: none !important;
-            box-shadow: none !important;
         }
 
         .xp-button:active {
             background: linear-gradient(to bottom, #E0DED6 0%, #D4D0C8 100%) !important;
             box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2) !important;
-            transform: none !important;
-        }
-
-        .rsvp-button {
-            min-height: 50px;
-            min-width: 100px;
-        }
-
-
-        @media (max-width: 768px) {
-            .password-dialog {
-                padding: 0.75rem;
-                max-width: 320px;
-            }
-
-            .password-dialog h2 {
-                font-size: 1.5rem;
-                margin-bottom: 0.75rem;
-            }
-
-            .password-dialog p {
-                font-size: 0.9rem;
-                margin-bottom: 1rem;
-            }
-
-            .password-dialog input {
-                font-size: 1rem;
-                padding: 0.6rem 0.8rem;
-            }
-
-            .password-dialog button {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                justify-content: flex-start;
-                gap: 1rem;
-                padding: 1rem;
-            }
-
-            nav a {
-                white-space: nowrap;
-            }
-
-            /* Optional: hide scrollbar */
-            nav {
-                scrollbar-width: none;
-                /* Firefox */
-                -ms-overflow-style: none;
-                /* IE/Edge */
-            }
-
-            nav::-webkit-scrollbar {
-                display: none;
-                /* Chrome/Safari */
-            }
-        }
-
-        @keyframes dialogBounce {
-            0% {
-                transform: scale(0.8) rotate(-5deg);
-                opacity: 0;
-            }
-
-            50% {
-                transform: scale(1.05) rotate(2deg);
-            }
-
-            100% {
-                transform: scale(1) rotate(0);
-                opacity: 1;
-            }
-        }
-
-        .password-dialog h2 {
-            margin-bottom: 1rem;
-        }
-
-        .password-dialog h2::after {
-            display: none;
-        }
-
-        .password-dialog p {
-            margin-bottom: 1.5rem;
-            color: #666;
-        }
-
-        .password-dialog input {
-            margin-bottom: 1rem;
-            text-align: center;
-            font-size: 1.1rem;
-        }
-
-        .password-dialog button {
-            width: 100%;
         }
 
         .error-msg {
@@ -916,7 +578,6 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            /* use flex to center pseudo-element content */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -929,30 +590,10 @@
             transition: all 0.3s;
         }
 
-        .music-toggle:hover {
-            transform: scale(1.1);
-        }
+        .music-toggle:hover { transform: scale(1.1); }
 
-        /* Ensure the pseudo-element fills the button and centers its content */
-        .music-toggle.playing::before,
-        .music-toggle.paused::before {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            content: '';
-            width: 100%;
-            height: 100%;
-            font-size: 1.4rem;
-            line-height: 1;
-        }
-
-        .music-toggle.playing::before {
-            content: '🎵';
-        }
-
-        .music-toggle.paused::before {
-            content: '🔇';
-        }
+        .music-toggle.playing::before { content: '🎵'; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; font-size: 1.4rem; }
+        .music-toggle.paused::before { content: '🔇'; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; font-size: 1.4rem; }
 
         .clippy {
             position: fixed;
@@ -965,9 +606,7 @@
             transition: transform 0.3s;
         }
 
-        .clippy:hover {
-            transform: scale(1.1);
-        }
+        .clippy:hover { transform: scale(1.1); }
 
         .clippy-speech {
             position: fixed;
@@ -1018,14 +657,44 @@
             z-index: 1;
         }
 
-        /* NO CLIPPY ON MOBILE */
-        @media (max-width: 768px),
-        (hover: none) and (pointer: coarse) {
-
-            .clippy,
-            .clippy-speech {
-                display: none !important;
+        @media (max-width: 768px) {
+            nav {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                justify-content: flex-start;
+                gap: 1rem;
+                padding: 1rem;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
             }
+            nav::-webkit-scrollbar { display: none; }
+            nav a { white-space: nowrap; }
+
+            .password-dialog { padding: 0.75rem; max-width: 320px; }
+            .password-dialog h2 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+            .password-dialog p { font-size: 0.9rem; margin-bottom: 1rem; }
+            .password-dialog input { font-size: 1rem; padding: 0.6rem 0.8rem; }
+            .password-dialog button { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
+            
+            .example-outfits-grid { flexDirection: column; gap: 15px; }
+            .outfit-card { width: 100%; }
+            .outfit-card img { height: 300px; max-width: 100%; }
+
+            .details-grid .detail-card:nth-child(1)::before,
+            .details-grid .detail-card:nth-child(2)::before {
+                left: -8px; top: -8px; right: -8px; bottom: -8px; background-size: 120% auto; opacity: 0.9;
+            }
+        }
+
+        /* Hide Clippy on mobile/touch */
+        @media (max-width: 768px), (hover: none) and (pointer: coarse) {
+            .clippy, .clippy-speech { display: none !important; }
+        }
+
+        @keyframes dialogBounce {
+            0% { transform: scale(0.8) rotate(-5deg); opacity: 0; }
+            50% { transform: scale(1.05) rotate(2deg); }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
         }
     </style>
 </head>
@@ -1034,11 +703,15 @@
 
     <div class="password-overlay" id="passwordOverlay">
         <div class="password-dialog">
-            <h2 class="password-dialog-title">you're invited! :-) </h2>
-            <p>Please enter the password to see the details</p>
-            <input type="password" id="passwordInput" placeholder="Enter password..." autofocus>
-            <button id="passwordBtn" class="xp-button">Enter</button>
-            <p class="error-msg" id="errorMsg"></p>
+            <div class="password-dialog-title">
+                <span>you're invited! :-)</span>
+            </div>
+            <div class="password-dialog-content">
+                <p>Please enter the password to see the details</p>
+                <input type="password" id="passwordInput" placeholder="Enter password..." autofocus>
+                <button id="passwordBtn" class="xp-button">Enter</button>
+                <p class="error-msg" id="errorMsg"></p>
+            </div>
         </div>
     </div>
 
@@ -1046,12 +719,10 @@
         <source src="./music/right4you.mp3" type="audio/mpeg">
     </audio>
 
-
     <button class="music-toggle paused" id="musicToggle" aria-label="Toggle music"></button>
 
     <div class="clippy-speech" id="clippySpeech"></div>
     <img src="./img/ClippyArtwork.webp" alt="Clippy" class="clippy" id="clippyImg" />
-
 
     <div class="floating-shapes">
         <div class="shape"></div>
@@ -1111,10 +782,10 @@
 
         <div class="example-outfits-grid">
             <div class="outfit-card">
-                <img src="./img/dresscode2.png" alt="Reception">
+                <img src="./img/dresscode2.png" alt="Dress code example 1">
             </div>
             <div class="outfit-card">
-                <img src="./img/dresscode1.png" alt="Reception">
+                <img src="./img/dresscode1.png" alt="Dress code example 2">
             </div>
         </div>
     </section>
@@ -1123,7 +794,7 @@
         <h2>What can you expect? </h2>
         <div class="story-card">
             <p>This is going to be a <b>non-normie</b> reception with some <b> normie activities.</b>
-                By that, it's probably not similar to the traditional weddings you've been to before.</b></b>
+                By that, it's probably not similar to the traditional weddings you've been to before.
 
                 Please read ahead to understand what to expect
             </p>
@@ -1161,7 +832,7 @@
                     <h3>some surprises</h3><br>
                     <p>Besides eating, drinking, and yapping, we'll also have speeches and cake cutting. So excited for
                         the cake omg!! We also have a few fun surprises planned throughout the night. idk I thought I
-                        heard something about a raffle and games....
+                        heard something about a raffle and games....</p>
                 </div>
             </div>
         </div>
@@ -1178,17 +849,7 @@
             <div class="rsvp-button-container" style="text-align: center; margin-top: 2rem;">
                 <button type="button" id="rsvpBtn" class="xp-button rsvp-button">RSVP!</button>
             </div>
-
-            <script>
-                document.getElementById('rsvpBtn').addEventListener('click', () => {
-                    const linkX = 'https://forms.gle/zkx3rsr3VmWXk7xr6'; // no plus one
-                    const linkY = 'https://forms.gle/tLZr7PXWdsrgb5f79'; // party of 2
-                    const target = (typeof isGroupA !== 'undefined' && isGroupA) ? linkX : linkY;
-                    window.open(target, '_blank', 'noopener');
-                });
-            </script>
         </div>
-
     </section>
 
     <section id="registry">
@@ -1205,56 +866,56 @@
     <section id="faq">
         <h2>FAQ</h2>
         <div class="faq-item">
-            <div class="faq-question">
+            <button class="faq-question" aria-expanded="false" style="width: 100%; border: none; background: none; text-align: left; font-family: inherit; font-size: inherit;">
                 <span>Can I bring a plus one?</span>
                 <span class="faq-toggle">+</span>
-            </div>
+            </button>
             <div class="faq-answer">
                 <p>Please check your RSVP form. If you're unsure/have questions, you can ask us</p>
             </div>
         </div>
         <div class="faq-item">
-            <div class="faq-question">
+            <button class="faq-question" aria-expanded="false" style="width: 100%; border: none; background: none; text-align: left; font-family: inherit; font-size: inherit;">
                 <span>Is there parking available?</span>
                 <span class="faq-toggle">+</span>
-            </div>
+            </button>
             <div class="faq-answer">
                 <p>Yes! Free parking is available at the restaurant.</p>
             </div>
         </div>
         <div class="faq-item">
-            <div class="faq-question">
+            <button class="faq-question" aria-expanded="false" style="width: 100%; border: none; background: none; text-align: left; font-family: inherit; font-size: inherit;">
                 <span>What if I have dietary restrictions?</span>
                 <span class="faq-toggle">+</span>
-            </div>
+            </button>
             <div class="faq-answer">
                 <p>We ask you that in the RSVP form. Ofc we will accommodate any dietary restrictions you have! Please
                     note this is family style dining.</p>
             </div>
         </div>
         <div class="faq-item">
-            <div class="faq-question">
+            <button class="faq-question" aria-expanded="false" style="width: 100%; border: none; background: none; text-align: left; font-family: inherit; font-size: inherit;">
                 <span>What kind of food?</span>
                 <span class="faq-toggle">+</span>
-            </div>
+            </button>
             <div class="faq-answer">
                 <p>Chinese food. COME HUNGRY!!!</p>
             </div>
         </div>
         <div class="faq-item">
-            <div class="faq-question">
+            <button class="faq-question" aria-expanded="false" style="width: 100%; border: none; background: none; text-align: left; font-family: inherit; font-size: inherit;">
                 <span>Are children allowed?</span>
                 <span class="faq-toggle">+</span>
-            </div>
+            </button>
             <div class="faq-answer">
                 <p>Unfortunately there are no children allowed </p>
             </div>
         </div>
         <div class="faq-item">
-            <div class="faq-question">
+            <button class="faq-question" aria-expanded="false" style="width: 100%; border: none; background: none; text-align: left; font-family: inherit; font-size: inherit;">
                 <span>Will there be drinks served?</span>
                 <span class="faq-toggle">+</span>
-            </div>
+            </button>
             <div class="faq-answer">
                 <p>There will be both non alcoholic and alcoholic drinks provided :)</p>
             </div>
@@ -1270,21 +931,25 @@
     </footer>
 
     <script>
-
-        // Don't show the page until background image is loaded
+        // Load background image with safety timeout
+        // This ensures the site isn't blank forever if the image breaks
+        const loadPage = () => document.body.classList.add('loaded');
+        
         const img = new Image();
-        img.onload = () => document.body.classList.add('loaded');
+        img.onload = loadPage;
+        img.onerror = loadPage; // Show page even if image fails
         img.src = './img/password-background.jpg';
+        
+        // Fallback: If image takes longer than 3 seconds, show content anyway
+        setTimeout(loadPage, 3000);
 
         let isGroupA = false;
 
         // Password protection
-        // GroupA
         const SECRET_PASSWORD = 'shibar';
-        // GroupB
         const SECOND_SECRET_PASSWORD = 'nihowdy';
 
-        // Music toggleß
+        // Music toggle
         const bgMusic = document.getElementById('bgMusic');
         const musicToggle = document.getElementById('musicToggle');
         let musicPlaying = false;
@@ -1297,7 +962,7 @@
                 musicToggle.classList.add('paused');
                 musicPlaying = false;
             } else {
-                bgMusic.play();
+                bgMusic.play().catch(e => console.log("Playback prevented:", e));
                 musicToggle.classList.add('playing');
                 musicToggle.classList.remove('paused');
                 musicPlaying = true;
@@ -1307,40 +972,40 @@
         function checkPassword() {
             const input = document.getElementById('passwordInput');
             const error = document.getElementById('errorMsg');
+            const dialog = document.querySelector('.password-dialog');
 
             if (input.value === SECRET_PASSWORD) {
                 isGroupA = true;
-                window.scrollTo(0, 0);
-                document.getElementById('passwordOverlay').classList.add('hidden');
-
-                // Start music
-                // bgMusic.currentTime = 60;
-                bgMusic.play();
-                musicPlaying = true;
-                musicToggle.classList.add('playing');
-                musicToggle.classList.remove('paused');
-
-                createConfetti();
+                unlockSite();
             } else if (input.value === SECOND_SECRET_PASSWORD) {
-                window.scrollTo(0, 0);
-                document.getElementById('passwordOverlay').classList.add('hidden');
-
-                // Start music
-                // bgMusic.currentTime = 60;
-                bgMusic.play();
-                musicPlaying = true;
-                musicToggle.classList.add('playing');
-                musicToggle.classList.remove('paused');
-                createConfetti();
+                isGroupA = false;
+                unlockSite();
             } else {
                 error.textContent = 'WRONG! try again';
                 input.value = '';
                 input.focus();
-                document.querySelector('.password-dialog').style.animation = 'none';
-                setTimeout(() => {
-                    document.querySelector('.password-dialog').style.animation = 'shake 0.5s ease-out';
-                }, 10);
+                
+                // Reset animation to trigger it again
+                dialog.style.animation = 'none';
+                dialog.offsetHeight; // Trigger reflow
+                dialog.style.animation = 'dialogBounce 0.5s ease-out'; // You might want to change this to a "shake" animation in CSS
             }
+        }
+
+        function unlockSite() {
+            window.scrollTo(0, 0);
+            document.getElementById('passwordOverlay').classList.add('hidden');
+            
+            // Try to play music (requires user interaction which happened via click/enter)
+            bgMusic.play().then(() => {
+                musicPlaying = true;
+                musicToggle.classList.add('playing');
+                musicToggle.classList.remove('paused');
+            }).catch(e => {
+                console.log("Auto-play blocked, user must click play manually");
+            });
+
+            createConfetti();
         }
 
         document.getElementById('passwordInput').addEventListener('keypress', (e) => {
@@ -1348,10 +1013,24 @@
         });
 
         document.getElementById('passwordBtn').addEventListener('click', checkPassword);
+
+        // RSVP Button Logic
+        document.getElementById('rsvpBtn').addEventListener('click', () => {
+            const linkX = 'https://forms.gle/zkx3rsr3VmWXk7xr6'; // no plus one
+            const linkY = 'https://forms.gle/tLZr7PXWdsrgb5f79'; // party of 2
+            const target = isGroupA ? linkX : linkY;
+            window.open(target, '_blank', 'noopener');
+        });
+
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(q => {
             q.addEventListener('click', () => {
-                q.parentElement.classList.toggle('open');
+                const parent = q.parentElement;
+                const isOpen = parent.classList.contains('open');
+                
+                // Toggle current
+                parent.classList.toggle('open');
+                q.setAttribute('aria-expanded', !isOpen);
             });
         });
 
@@ -1367,14 +1046,14 @@
                     confetti.className = 'confetti';
                     const size = Math.random() * 12 + 6;
                     confetti.style.cssText = `
-            left: ${Math.random() * 100}vw;
-            top: -20px;
-            width: ${size}px;
-            height: ${size}px;
-            background: ${colors[Math.floor(Math.random() * colors.length)]};
-            border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
-            transform: rotate(${Math.random() * 360}deg);
-          `;
+                        left: ${Math.random() * 100}vw;
+                        top: -20px;
+                        width: ${size}px;
+                        height: ${size}px;
+                        background: ${colors[Math.floor(Math.random() * colors.length)]};
+                        border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+                        transform: rotate(${Math.random() * 360}deg);
+                    `;
                     document.body.appendChild(confetti);
 
                     const drift = (Math.random() - 0.5) * 200;
@@ -1390,23 +1069,6 @@
                 }, Math.random() * duration);
             }
         }
-
-        function firstClippyMsg() {
-            setTimeout(function () {
-                speechBubble.classList.add('show');
-                speechBubble.textContent = "click me!";
-
-                // Then hide after another 10 seconds
-                hideTimeout = setTimeout(function () {
-                    speechBubble.classList.remove('show');
-                }, 10000);
-            }, 10000); // Wait 10 seconds before showing
-        }
-
-        // Trigger confetti on page load
-        window.addEventListener('load', createConfetti);
-        window.addEventListener('load', firstClippyMsg);
-
 
         // Clippy functionality
         const phrases = [
@@ -1430,38 +1092,54 @@
             "This song is Right 4 You by Future + Metro Boomin!",
             "Clippy loves to assist with tasks big and small!",
         ];
-        // file:///Users/toogabob/teresa-darin.github.io/index.html#home
+
         let currentIndex = 0;
         let hideTimeout;
         const speechBubble = document.getElementById('clippySpeech');
         const clippyImg = document.getElementById('clippyImg');
 
-        clippyImg.addEventListener('click', function () {
-            clearTimeout(hideTimeout);
+        function firstClippyMsg() {
+            if (!clippyImg) return;
+            setTimeout(function () {
+                speechBubble.classList.add('show');
+                speechBubble.textContent = "click me!";
 
-            speechBubble.classList.add('show');
-            // Set the current phrase
-            speechBubble.textContent = phrases[currentIndex];
-            currentIndex = Math.floor(Math.random() * phrases.length);
-
-            // fade out if no click for 10s
-            hideTimeout = setTimeout(function () {
-                speechBubble.classList.remove('show');
+                hideTimeout = setTimeout(function () {
+                    speechBubble.classList.remove('show');
+                }, 10000);
             }, 10000);
-        });
+        }
+
+        if (clippyImg) {
+            clippyImg.addEventListener('click', function () {
+                clearTimeout(hideTimeout);
+
+                speechBubble.classList.add('show');
+                speechBubble.textContent = phrases[currentIndex];
+                currentIndex = Math.floor(Math.random() * phrases.length);
+
+                hideTimeout = setTimeout(function () {
+                    speechBubble.classList.remove('show');
+                }, 10000);
+            });
+        }
+
+        // Initial calls
+        createConfetti();
+        firstClippyMsg();
 
         // Smooth scrolling
         document.querySelectorAll('nav a').forEach(a => {
             a.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
             });
         });
-
-
     </script>
 </body>
-
 </html>
